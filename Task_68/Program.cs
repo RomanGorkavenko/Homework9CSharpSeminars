@@ -1,7 +1,25 @@
-﻿int a = 3;
-int b = 10;
+﻿
+Console.Write("Введите неотрицательное число M: ");
+string a = Console.ReadLine();
 
-Console.WriteLine(Akkerman(a, b));
+Console.Write("Введите неотрицательное число N: ");
+string b = Console.ReadLine();
+
+var numberM = ExceptionHandling(a);
+var numberN = ExceptionHandling(b);
+
+if (numberM.exception && numberN.exception && numberM.number >= 0 && numberN.number >= 0)
+{
+    Console.WriteLine($"A({numberM.number}, {numberN.number}) = {Akkerman(numberM.number, numberN.number)}");
+}
+else
+{
+    Console.ForegroundColor = ConsoleColor.DarkRed;
+    Console.WriteLine($"{a}, {b} -> Некорректный ввод!");
+}
+
+
+
 
 int Akkerman(int m, int n)
 {
@@ -11,3 +29,12 @@ int Akkerman(int m, int n)
     return 0;
 }
 
+(bool exception, int number) ExceptionHandling(string number)
+{
+    bool yesInt = int.TryParse(number, out int d);
+    if (!yesInt)
+    {
+        return (false, d);
+    }
+    return (true, d);
+}
