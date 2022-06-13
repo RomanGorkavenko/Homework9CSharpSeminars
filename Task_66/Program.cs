@@ -20,7 +20,8 @@ else
 
 int Summa(int firstNumber, int lastNumber)
 {
-    if (lastNumber >= firstNumber) return lastNumber + Summa(firstNumber, lastNumber - 1);
+    if (lastNumber > firstNumber) return (lastNumber + 1) + Summa(firstNumber, lastNumber - 1);
+    if (firstNumber > lastNumber) return (firstNumber + 1) + Summa(firstNumber - 1, lastNumber);
     return 0;  
 }
 
