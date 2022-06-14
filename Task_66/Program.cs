@@ -10,7 +10,15 @@ var numberN = ExceptionHandling(n);
 
 if (numberM.exception && numberN.exception && numberM.number >= 0 && numberN.number >= 0)
 {
-    System.Console.WriteLine($"Сумма = {Summa(numberM.number, numberN.number)}");
+    if (numberM.number < numberN.number)
+    {
+        Console.WriteLine($"Сумма = {Summa(numberM.number, numberN.number)}");
+    }
+    else
+    {
+        Console.WriteLine($"Сумма = {Summa(numberN.number, numberM.number)}");
+    }
+    
 }
 else
 {
@@ -20,8 +28,7 @@ else
 
 int Summa(int firstNumber, int lastNumber)
 {
-    if (lastNumber > firstNumber) return (lastNumber + 1) + Summa(firstNumber, lastNumber - 1);
-    if (firstNumber > lastNumber) return (firstNumber + 1) + Summa(firstNumber - 1, lastNumber);
+    if (lastNumber >= firstNumber) return (lastNumber) + Summa(firstNumber, --lastNumber);
     return 0;  
 }
 
